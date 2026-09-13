@@ -16,7 +16,21 @@ function setPlayerCharacter(){
 function startGame(){setPlayerCharacter();menu.classList.add("hidden");gameOver.classList.add("hidden");win.classList.add("hidden");game.classList.remove("hidden");score=0;lives=3;level=1;x=90;y=0;vx=0;vy=0;jumping=false;paused=false;running=true;collected=0;collectibles=[];rocks=[];items.innerHTML="";obstacles.innerHTML="";updateHUD();lastTime=performance.now();requestAnimationFrame(loop)}
 function updateHUD(){scoreEl.textContent=score;levelEl.textContent=level;livesEl.textContent="❤️".repeat(lives)+"🖤".repeat(3-lives)}
 function spawnCollectible(){const el=document.createElement("div");el.className="collectible";const types=[{icon:"🌺",points:10},{icon:"🪔",points:20},{icon:"🍬",points:30}];const t=types[Math.floor(Math.random()*types.length)];el.textContent=t.icon;el.style.left=(world.clientWidth+30)+"px";el.style.bottom=(125+Math.random()*115)+"px";items.appendChild(el);collectibles.push({el,x:world.clientWidth+30,points:t.points})}
-function spawnRock(){const el=document.createElement("div");el.className="rock";el.textContent="🪨";el.style.left=(world.clientWidth+30)+"px";el.style.bottom="105px";obstacles.appendChild(el);rocks.push({el,x:world.clientWidth+30})}
+function spawnRock(){
+  const el=document.createElement("div");
+  el.className="rock";
+  el.style.width="90px";
+  el.style.height="70px";
+  el.style.backgroundImage="url('ENEMY.png')";
+  el.style.backgroundRepeat="no-repeat";
+  el.style.backgroundSize="contain";
+  el.style.backgroundPosition="center";
+  el.style.fontSize="0";
+  el.style.left=(world.clientWidth+30)+"px";
+  el.style.bottom="105px";
+  obstacles.appendChild(el);
+  rocks.push({el,x:world.clientWidth+30});
+}
 function rectsOverlap(a,b){const A=a.getBoundingClientRect(),B=b.getBoundingClientRect();return A.left<B.right&&A.right>B.left&&A.top<B.bottom&&A.bottom>B.top}
 function loseLife(){lives--;updateHUD();x=Math.max(50,x-70);if(lives<=0){running=false;document.getElementById("finalScore").textContent=score;game.classList.add("hidden");gameOver.classList.remove("hidden")}}
 function levelComplete(){const msg=document.createElement("div");msg.className="level-toast";msg.textContent=level<3?`✨ Level ${level+1} unlocked! ✨`:"";document.body.appendChild(msg);setTimeout(()=>msg.remove(),1200)}
