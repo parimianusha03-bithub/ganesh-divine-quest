@@ -4,10 +4,10 @@ const gravity=1500,speed=300;
 
 function setPlayerCharacter(){
   player.innerHTML="";
-  player.style.width="100px";
-  player.style.height="130px";
+  player.style.width="150px";
+  player.style.height="190px";
   player.style.fontSize="0";
-  player.style.backgroundImage="url('GANESH_transparent.png')";
+  player.style.backgroundImage="url('GANESH (2).png')";
   player.style.backgroundRepeat="no-repeat";
   player.style.backgroundSize="contain";
   player.style.backgroundPosition="center";
