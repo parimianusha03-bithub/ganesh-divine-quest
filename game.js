@@ -18,7 +18,7 @@ function updateHUD(){scoreEl.textContent=score;levelEl.textContent=level;livesEl
 function spawnCollectible(){const el=document.createElement("div");el.className="collectible";const types=[{icon:"🌺",points:10},{icon:"🪔",points:20},{icon:"🍬",points:30}];const t=types[Math.floor(Math.random()*types.length)];el.textContent=t.icon;el.style.left=(world.clientWidth+30)+"px";el.style.bottom=(125+Math.random()*115)+"px";items.appendChild(el);collectibles.push({el,x:world.clientWidth+30,points:t.points})}
 function spawnRock(){
   const el=document.createElement("div");
-  el.className="rock";
+  el.className="mouse";
   el.style.width="90px";
   el.style.height="70px";
   el.style.backgroundImage="url('ENEMY.png')";
@@ -30,7 +30,8 @@ function spawnRock(){
   el.style.bottom="105px";
   obstacles.appendChild(el);
   rocks.push({el,x:world.clientWidth+30});
-}function rectsOverlap(a,b){const A=a.getBoundingClientRect(),B=b.getBoundingClientRect();return A.left<B.right&&A.right>B.left&&A.top<B.bottom&&A.bottom>B.top}
+}
+function rectsOverlap(a,b){const A=a.getBoundingClientRect(),B=b.getBoundingClientRect();return A.left<B.right&&A.right>B.left&&A.top<B.bottom&&A.bottom>B.top}
 function loseLife(){lives--;updateHUD();x=Math.max(50,x-70);if(lives<=0){running=false;document.getElementById("finalScore").textContent=score;game.classList.add("hidden");gameOver.classList.remove("hidden")}}
 function levelComplete(){const msg=document.createElement("div");msg.className="level-toast";msg.textContent=level<3?`✨ Level ${level+1} unlocked! ✨`:"";document.body.appendChild(msg);setTimeout(()=>msg.remove(),1200)}
 function loop(now){if(!running)return;const dt=Math.min((now-lastTime)/1000,.033);lastTime=now;if(!paused){vx*=.85;x+=vx*dt;x=Math.max(10,Math.min(world.clientWidth-70,x));if(jumping){y+=vy*dt;vy-=gravity*dt;if(y<=0){y=0;vy=0;jumping=false}}spawnTimer+=dt;rockTimer+=dt;if(spawnTimer>Math.max(.72,1.35-level*.1)){spawnCollectible();spawnTimer=0}if(rockTimer>Math.max(.95,1.75-level*.08)){spawnRock();rockTimer=0}const scroll=(230+level*45)*dt;collectibles.forEach(c=>c.x-=scroll);rocks.forEach(r=>r.x-=scroll);collectibles=collectibles.filter(c=>{c.el.style.left=c.x+"px";if(rectsOverlap(player,c.el)){score+=c.points;collected++;c.el.remove();updateHUD();if((level===1&&collected>=10)||(level===2&&collected>=12)){level++;collected=0;updateHUD();levelComplete()}else if(level===3&&collected>=15){running=false;document.getElementById("winScore").textContent=score;game.classList.add("hidden");win.classList.remove("hidden")}return false}if(c.x<-60){c.el.remove();return false}return true});rocks=rocks.filter(r=>{r.el.style.left=r.x+"px";if(rectsOverlap(player,r.el)){r.el.remove();loseLife();return false}if(r.x<-70){r.el.remove();return false}return true});player.style.left=x+"px";player.style.bottom=(105+y)+"px"}requestAnimationFrame(loop)}
