@@ -1,0 +1,85 @@
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0; width: 100%; height: 100%;
+  font-family: system-ui, Arial, sans-serif;
+  background: #160b28; color: #fff; overflow: hidden;
+}
+body { display: flex; justify-content: center; align-items: center; }
+.game-shell {
+  width: min(100vw, 900px); height: min(100vh, 700px);
+  background: #28104a; position: relative; overflow: hidden;
+}
+.screen {
+  width: 100%; height: 100%; display: flex; flex-direction: column;
+  justify-content: center; align-items: center; text-align: center;
+  padding: 24px; background: radial-gradient(circle at 50% 25%, #7a2c87, #28104a 65%);
+}
+.screen h1 { font-size: clamp(2rem, 8vw, 4.2rem); margin: 8px 0; }
+.screen h2 { font-size: clamp(2rem, 8vw, 3.5rem); margin: 8px 0; }
+.screen p { font-size: 1.05rem; }
+.om { font-size: clamp(3rem, 14vw, 7rem); }
+button {
+  border: 0; border-radius: 18px; padding: 14px 26px; margin: 8px;
+  font-size: 1.15rem; font-weight: 800; cursor: pointer;
+  background: #ffbf2f; color: #351044; box-shadow: 0 5px 0 #b56e12;
+  touch-action: manipulation;
+}
+button:active { transform: translateY(3px); box-shadow: 0 2px 0 #b56e12; }
+button.secondary { background: #fff; box-shadow: 0 5px 0 #aaa; }
+.hidden { display: none !important; }
+.instructions {
+  max-width: 500px; padding: 12px 20px; margin-top: 10px;
+  border-radius: 16px; background: rgba(0,0,0,.25);
+}
+
+#game { width: 100%; height: 100%; position: relative; }
+.hud {
+  height: 52px; display: flex; justify-content: space-around; align-items: center;
+  background: rgba(36, 12, 55, .85); font-weight: 900; position: relative; z-index: 20;
+}
+#world {
+  height: calc(100% - 52px); position: relative; overflow: hidden;
+  background: linear-gradient(#f59c50 0%, #f7c46b 48%, #79b85b 100%);
+}
+.sun { position: absolute; top: 24px; right: 10%; font-size: 3rem; }
+.cloud { position: absolute; font-size: 3rem; opacity: .8; }
+.cloud1 { top: 50px; left: 12%; }
+.cloud2 { top: 110px; right: 18%; }
+.mountain {
+  position: absolute; bottom: 100px; width: 0; height: 0;
+  border-left: 130px solid transparent; border-right: 130px solid transparent;
+  border-bottom: 180px solid #6b6280; opacity: .65;
+}
+.m1 { left: 5%; } .m2 { right: 5%; transform: scale(.75); }
+.ground {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 105px;
+  background: repeating-linear-gradient(135deg, #4e8e3f 0 12px, #3f7934 12px 24px);
+  border-top: 8px solid #d4a23a;
+}
+#player {
+  position: absolute; left: 90px; bottom: 105px; font-size: 64px;
+  z-index: 10; filter: drop-shadow(0 5px 2px rgba(0,0,0,.25));
+  user-select: none;
+}
+.collectible, .rock {
+  position: absolute; z-index: 8; user-select: none;
+  font-size: 38px;
+}
+.rock { font-size: 42px; }
+.controls {
+  position: absolute; left: 0; right: 0; bottom: 8px; z-index: 30;
+  display: flex; justify-content: space-between; padding: 0 14px;
+  pointer-events: none;
+}
+.controls button { pointer-events: auto; width: 68px; height: 58px; padding: 0; opacity: .92; }
+.overlay {
+  position: absolute; inset: 52px 0 0; z-index: 50;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  background: rgba(25, 5, 35, .78);
+}
+@media (max-width: 600px) {
+  .game-shell { width: 100vw; height: 100vh; }
+  #player { font-size: 54px; left: 50px; }
+  .hud { font-size: .9rem; }
+  .mountain { border-left-width: 90px; border-right-width: 90px; border-bottom-width: 130px; }
+}

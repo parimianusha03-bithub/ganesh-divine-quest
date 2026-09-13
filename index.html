@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Ganesh's Divine Quest</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="game-shell">
+    <div id="menu" class="screen">
+      <div class="om">ॐ</div>
+      <h1>Ganesh's Divine Quest</h1>
+      <p>A Ganesh Chaturthi Adventure</p>
+      <button id="playBtn">🐘 PLAY</button>
+      <button id="howBtn" class="secondary">📖 HOW TO PLAY</button>
+      <div id="instructions" class="instructions hidden">
+        <p>Move Ganesha, collect flowers, and avoid rocks.</p>
+        <p>Keyboard: ← → to move, ↑ or Space to jump, P to pause.</p>
+        <p>Phone: use the buttons at the bottom.</p>
+      </div>
+    </div>
+
+    <div id="game" class="hidden">
+      <header class="hud">
+        <span id="lives">❤️❤️❤️</span>
+        <span>SCORE: <b id="score">0</b></span>
+        <span>LEVEL: <b id="level">1</b></span>
+      </header>
+
+      <section id="world">
+        <div class="sun">☀️</div>
+        <div class="cloud cloud1">☁️</div>
+        <div class="cloud cloud2">☁️</div>
+        <div class="mountain m1"></div>
+        <div class="mountain m2"></div>
+        <div id="player">🐘</div>
+        <div id="items"></div>
+        <div id="obstacles"></div>
+        <div class="ground"></div>
+      </section>
+
+      <div class="controls">
+        <button id="leftBtn">◀</button>
+        <button id="jumpBtn">🔼</button>
+        <button id="rightBtn">▶</button>
+      </div>
+
+      <div id="pausePanel" class="overlay hidden">
+        <h2>⏸️ Paused</h2>
+        <button id="resumeBtn">▶️ Resume</button>
+      </div>
+    </div>
+
+    <div id="gameOver" class="screen hidden">
+      <div class="om">🙏</div>
+      <h2>Game Over</h2>
+      <p>Your score: <b id="finalScore">0</b></p>
+      <button id="againBtn">🔄 PLAY AGAIN</button>
+    </div>
+
+    <div id="win" class="screen hidden">
+      <div class="om">✨🐘✨</div>
+      <h2>Ganpati Bappa Morya!</h2>
+      <p>You completed the first Divine Quest!</p>
+      <p>Final score: <b id="winScore">0</b></p>
+      <button id="winAgainBtn">🔄 PLAY AGAIN</button>
+    </div>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>
