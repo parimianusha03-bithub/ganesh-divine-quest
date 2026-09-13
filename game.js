@@ -21,7 +21,7 @@ function updateHUD(){
 
   for(let i=0;i<3;i++){
     const heart=document.createElement("img");
-    heart.src=i<lives?"LIFE_transparent.png":"";
+    heart.src=i<lives?"LIFE.png":"";
     heart.className="life-heart";
     if(i>=lives) heart.style.opacity="0.25";
     livesEl.appendChild(heart);
