@@ -15,7 +15,19 @@ function setPlayerCharacter(){
 
 function startGame(){setPlayerCharacter();menu.classList.add("hidden");gameOver.classList.add("hidden");win.classList.add("hidden");game.classList.remove("hidden");score=0;lives=3;level=1;x=90;y=0;vx=0;vy=0;jumping=false;paused=false;running=true;collected=0;collectibles=[];rocks=[];items.innerHTML="";obstacles.innerHTML="";updateHUD();lastTime=performance.now();requestAnimationFrame(loop)}
 ivesEl.appendChild(heart);
-}const heart=document.createElement("img");
+}function updateHUD(){
+  scoreEl.textContent = score;
+  levelEl.textContent = level;
+  livesEl.innerHTML = "";
+
+  for(let i = 0; i < lives; i++){
+    
+    
+    
+    
+    
+  
+const heart=document.createElement("img");
 heart.src="LIFE.png";
 heart.className="life-heart";
 if(i>=lives) heart.style.opacity="25";
