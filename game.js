@@ -14,27 +14,25 @@ function setPlayerCharacter(){
 }
 
 function startGame(){setPlayerCharacter();menu.classList.add("hidden");gameOver.classList.add("hidden");win.classList.add("hidden");game.classList.remove("hidden");score=0;lives=3;level=1;x=90;y=0;vx=0;vy=0;jumping=false;paused=false;running=true;collected=0;collectibles=[];rocks=[];items.innerHTML="";obstacles.innerHTML="";updateHUD();lastTime=performance.now();requestAnimationFrame(loop)}
-ivesEl.appendChild(heart);
-}function updateHUD(){
+
+}
+function updateHUD(){
   scoreEl.textContent = score;
   levelEl.textContent = level;
   livesEl.innerHTML = "";
 
-  for(let i = 0; i < lives; i++){
-    
-    
-    
-    
-    
-  
-const heart=document.createElement("img");
-heart.src="LIFE.png";
-heart.className="life-heart";
-if(i>=lives) heart.style.opacity="25";
-livesEl.appendChild(heart);
+  for(let i = 0; i < 3; i++){
+    const heart = document.createElement("img");
+    heart.src = "LIFE.png";
+    heart.className = "life-heart";
+
+    if(i >= lives){
+      heart.style.opacity = "0.25";
+    }
+
+    livesEl.appendChild(heart);
   }
 }
-
 function spawnCollectible(){const el=document.createElement("div");el.className="collectible";const types=[{icon:"🌺",points:10},{icon:"🪔",points:20},{icon:"🍬",points:30}];const t=types[Math.floor(Math.random()*types.length)];el.textContent=t.icon;el.style.left=(world.clientWidth+30)+"px";el.style.bottom=(125+Math.random()*115)+"px";items.appendChild(el);collectibles.push({el,x:world.clientWidth+30,points:t.points})}
 function spawnRock(){
   const el=document.createElement("div");
