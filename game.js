@@ -26,7 +26,7 @@ function updateHUD(){
     if(i>=lives) heart.style.opacity="0.25";
     livesEl.appendChild(heart);
   }
-}function spawnCollectible(){const el=document.createElement("div");el.className="collectible";const types=[{icon:"🌺",points:10},{icon:"🪔",points:20},{icon:"🍬",points:30}];const t=types[Math.floor(Math.random()*types.length)];el.textContent=t.icon;el.style.left=(world.clientWidth+30)+"px";el.style.bottom=(125+Math.random()*115)+"px";items.appendChild(el);collectibles.push({el,x:world.clientWidth+30,points:t.points})}
+function spawnCollectible(){const el=document.createElement("div");el.className="collectible";const types=[{icon:"🌺",points:10},{icon:"🪔",points:20},{icon:"🍬",points:30}];const t=types[Math.floor(Math.random()*types.length)];el.textContent=t.icon;el.style.left=(world.clientWidth+30)+"px";el.style.bottom=(125+Math.random()*115)+"px";items.appendChild(el);collectibles.push({el,x:world.clientWidth+30,points:t.points})}
 function spawnRock(){
   const el=document.createElement("div");
   el.className="mouse";
